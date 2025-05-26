@@ -7,7 +7,7 @@ namespace YoutubeApiBootcamp.WebApi.Context
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer("Server=AlperenTeke;initial catalog=ApiYummyDb;integrated security=true;");
+			optionsBuilder.UseSqlServer("Server=LOCALHOST;initial catalog=ApiYummyDb;integrated security=true;");
 		}
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Chef> Chefs { get; set; }
