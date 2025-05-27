@@ -43,5 +43,38 @@ namespace YoutubeApiBootcamp.WebApi.Controllers
                 return Ok("Product added successfully");
             }
         }
+
+        [HttpDelete]
+        public IActionResult DeleteProduct(int id)
+        {
+            var value = _context.Products.Find(id);
+            _context.Products.Remove(value);
+            _context.SaveChanges();
+            return Ok("Product deleted succesfully");
+        }
+
+        [HttpGet("GetById")]
+        public IActionResult GetProductById(int id)
+        {
+            var value = _context.Products.Find(id);
+            return Ok(value);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateProduct(Product product)
+        {
+            var validationRes = _validator.Validate(product);
+
+            if (!validationRes.IsValid)
+            {
+                return BadRequest(validationRes.Errors.Select(x => x.ErrorMessage));
+            }
+            else
+            {
+                _context.Products.Update(product);
+                _context.SaveChanges();
+                return Ok("Product updated successfully");
+            }
+        }
     }
 }
