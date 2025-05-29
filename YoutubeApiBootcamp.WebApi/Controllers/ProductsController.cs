@@ -1,7 +1,9 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YoutubeApiBootcamp.WebApi.Context;
+using YoutubeApiBootcamp.WebApi.Dtos.ProductDtos;
 using YoutubeApiBootcamp.WebApi.Entities;
 
 namespace YoutubeApiBootcamp.WebApi.Controllers
@@ -12,11 +14,13 @@ namespace YoutubeApiBootcamp.WebApi.Controllers
     {
         private readonly ApiContext _context;
         private readonly IValidator<Product> _validator;
+        private readonly IMapper _mapper;
 
-        public ProductsController(ApiContext context, IValidator<Product> validator)
+        public ProductsController(ApiContext context, IValidator<Product> validator, IMapper mapper)
         {
             _context = context;
             _validator = validator;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -42,6 +46,17 @@ namespace YoutubeApiBootcamp.WebApi.Controllers
 
                 return Ok("Product added successfully");
             }
+        }
+
+        [HttpPost("CreateProductWithCategory")]
+        public IActionResult CreateProductWithCategory(CreateProductDto createProductDto)
+        {
+            var value = _mapper.Map<Product>(createProductDto);
+
+            _context.Products.Add(value);
+            _context.SaveChanges();
+
+            return Ok("Product added successfully");
         }
 
         [HttpDelete]

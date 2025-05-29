@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using YoutubeApiBootcamp.WebApi.Dtos.FeatureDtos;
 using YoutubeApiBootcamp.WebApi.Dtos.MessageDtos;
+using YoutubeApiBootcamp.WebApi.Dtos.ProductDtos;
 using YoutubeApiBootcamp.WebApi.Entities;
 
 namespace YoutubeApiBootcamp.WebApi.Mapping
@@ -18,6 +19,8 @@ namespace YoutubeApiBootcamp.WebApi.Mapping
             CreateMap<ContactMessage, GetByIdContactMessageDto>().ReverseMap();
             CreateMap<ContactMessage, ResultContactMessageDto>().ReverseMap();
             CreateMap<ContactMessage, UpdateContactMessageDto>().ReverseMap();
+
+            CreateMap<Product, CreateProductDto>().ReverseMap();
         }
     }
 }
