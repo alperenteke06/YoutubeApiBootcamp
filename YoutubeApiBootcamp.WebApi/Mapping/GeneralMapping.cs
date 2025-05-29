@@ -21,6 +21,7 @@ namespace YoutubeApiBootcamp.WebApi.Mapping
             CreateMap<ContactMessage, UpdateContactMessageDto>().ReverseMap();
 
             CreateMap<Product, CreateProductDto>().ReverseMap();
+            CreateMap<Product, GetProductWithCategoryDto>().ForMember(x=>x.CategoryName, y=> y.MapFrom(z=>z.Category.CategoryName)).ReverseMap();
         }
     }
 }

@@ -2,6 +2,7 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using YoutubeApiBootcamp.WebApi.Context;
 using YoutubeApiBootcamp.WebApi.Dtos.ProductDtos;
 using YoutubeApiBootcamp.WebApi.Entities;
@@ -28,6 +29,15 @@ namespace YoutubeApiBootcamp.WebApi.Controllers
         {
             var values = _context.Products.ToList();
             return Ok(values);
+        }
+
+        [HttpGet("GetProductsWithCategory")]
+        public IActionResult GetProductsWithCategory()
+        {
+            var values = _context.Products.Include(x => x.Category).ToList();
+            var result = _mapper.Map<List<GetProductWithCategoryDto>>(values);
+
+            return Ok(result);
         }
 
         [HttpPost]
