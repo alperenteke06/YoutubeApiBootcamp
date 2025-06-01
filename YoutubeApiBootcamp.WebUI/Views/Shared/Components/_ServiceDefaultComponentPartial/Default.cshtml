@@ -1,4 +1,5 @@
-﻿ <!-- Why Us Section -->
+﻿@model List<YoutubeApiBootcamp.WebUI.Dtos.ServiceDtos.ResultServiceDto>
+<!-- Why Us Section -->
 <section id="why-us" class="why-us section light-background">
 
     <div class="container">
@@ -9,8 +10,8 @@
                 <div class="why-box">
                     <h3>Neden Yummy?</h3>
                     <p>
-                        Yummy, eşsiz lezzetleriyle sofralarınıza mutluluk katıyor. Her lokmada doğallığı ve kaliteyi hissedin. 
-                        Özenle seçilen malzemelerle hazırlanan ürünlerimiz, damak zevkinize hitap eder. Sağlıklı ve doyurucu seçeneklerimizle 
+                        Yummy, eşsiz lezzetleriyle sofralarınıza mutluluk katıyor. Her lokmada doğallığı ve kaliteyi hissedin.
+                        Özenle seçilen malzemelerle hazırlanan ürünlerimiz, damak zevkinize hitap eder. Sağlıklı ve doyurucu seçeneklerimizle
                         gün boyu enerjinizi koruyun. Şimdi Yummy’yi deneyin ve farkı yaşayın.
                     </p>
                     <div class="text-center">
@@ -21,31 +22,16 @@
 
             <div class="col-lg-8 d-flex align-items-stretch">
                 <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
-
-                    <div class="col-xl-4">
-                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                            <i class="bi bi-clipboard-data"></i>
-                            <h4>Taze ve Doğal Tatlar</h4>
-                            <p>Sofralarınıza sağlık ve lezzet katmak için en taze ve doğal malzemeleri özenle seçiyoruz.</p>
+                    @foreach (var x in Model)
+                    {
+                        <div class="col-xl-4">
+                            <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                                <i class="@x.IconUrl"></i>
+                                <h4>@x.Title</h4>
+                                <p>@x.Description</p>
+                            </div>
                         </div>
-                    </div><!-- End Icon Box -->
-
-                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                            <i class="bi bi-gem"></i>
-                            <h4>Usta Şeflerin Dokunuşu</h4>
-                            <p>Lezzetli ve doyurucu yemeklerimiz usta şeflerin özenli tarifleri ile hazırlanıyor.</p>
-                        </div>
-                    </div><!-- End Icon Box -->
-
-                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
-                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                            <i class="bi bi-inboxes"></i>
-                            <h4>Hızlı ve Güvenli Teslimat</h4>
-                            <p>Siparişleriniz hızlı ve güvenli şekilde kapınıza ulaştırılarak keyifli anlar yaşatır.</p>
-                        </div>
-                    </div><!-- End Icon Box -->
-
+                    }
                 </div>
             </div>
 
