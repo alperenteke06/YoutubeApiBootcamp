@@ -17,7 +17,7 @@ namespace YoutubeApiBootcamp.WebUI.ViewComponents
 		{
 			var client = _httpClientFactory.CreateClient();
 
-			var resMessage = await client.GetAsync("https://localhost:7168/api/Services");
+			var resMessage = await client.GetAsync("https://localhost:7168/api/Services/");
 
 			if (resMessage.IsSuccessStatusCode)
 			{
