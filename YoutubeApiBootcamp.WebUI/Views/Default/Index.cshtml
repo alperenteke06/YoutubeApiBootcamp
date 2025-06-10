@@ -19,6 +19,7 @@
 
         @await Component.InvokeAsync("_ServiceDefaultComponentPartial")
 
+        @* Stats Section Start *@
         <section id="stats" class="stats section dark-background">
 
             <img src="assets/img/stats-bg.jpg" alt="" data-aos="fade-in">
@@ -60,8 +61,11 @@
             </div>
 
         </section>
+        @* Stats Section End *@
 
+        @* Menu Section Start *@
         @await Component.InvokeAsync("_DefaultMenuViewComponentPartial")
+        @* Menu Section End *@
 
         <!-- Testimonials Section -->
         <section id="testimonials" class="testimonials section light-background">
