@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YoutubeApiBootcamp.WebApi.Context;
+using YoutubeApiBootcamp.WebApi.Dtos.CategoryDtos;
 using YoutubeApiBootcamp.WebApi.Entities;
 
 namespace YoutubeApiBootcamp.WebApi.Controllers
@@ -10,16 +12,20 @@ namespace YoutubeApiBootcamp.WebApi.Controllers
 	public class CategoriesController : ControllerBase
 	{
 		private readonly ApiContext _context;
+		private readonly IMapper _mapper;
 
-		public CategoriesController(ApiContext context)
-		{
-			_context = context;
-		}
+        public CategoriesController(ApiContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
 
-		[HttpPost]
-		public IActionResult CreateCategory(Category category)
+        [HttpPost]
+		public IActionResult CreateCategory(CreateCategoryDto createCategoryDto)
 		{
-			_context.Categories.Add(category);
+			var value = _mapper.Map<Category>(createCategoryDto);
+
+			_context.Categories.Add(value);
 			_context.SaveChanges();
 
 			return Ok("Category Added Succesfully");
@@ -33,17 +39,17 @@ namespace YoutubeApiBootcamp.WebApi.Controllers
 			return Ok(values);
 		}
 
-		[HttpDelete]
-		public IActionResult DeleteCategory(int categoryId)
-		{
-			var deletedCategory = _context.Categories.Find(categoryId);
-			_context.Categories.Remove(deletedCategory);
-			_context.SaveChanges();
+        [HttpDelete]
+        public IActionResult DeleteCategory(int id)
+        {
+            var value = _context.Categories.Find(id);
+            _context.Categories.Remove(value);
+            _context.SaveChanges();
 
-			return Ok("Category Deleted Succesfully");
-		}
+            return Ok("Category Deleted Succesfully");
+        }
 
-		[HttpGet("GetById")]
+        [HttpGet("GetById")]
 		public IActionResult GetCategoryById(int id)
 		{
 			var category = _context.Categories.Find(id);
@@ -52,9 +58,11 @@ namespace YoutubeApiBootcamp.WebApi.Controllers
 		}
 
 		[HttpPut]
-		public IActionResult UpdateCategory(Category category)
+		public IActionResult UpdateCategory(UpdateCategoryDto updateCategoryDto)
 		{
-			_context.Categories.Update(category);
+            var value = _mapper.Map<Category>(updateCategoryDto);
+
+            _context.Categories.Update(value);
 			_context.SaveChanges();
 
 			return Ok("Category Updated Succesfully");

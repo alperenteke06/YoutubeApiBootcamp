@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using YoutubeApiBootcamp.WebApi.Dtos.CategoryDtos;
 using YoutubeApiBootcamp.WebApi.Dtos.FeatureDtos;
 using YoutubeApiBootcamp.WebApi.Dtos.MessageDtos;
 using YoutubeApiBootcamp.WebApi.Dtos.NotificationDtos;
@@ -11,6 +12,9 @@ namespace YoutubeApiBootcamp.WebApi.Mapping
     {
         public GeneralMapping()
         {
+            CreateMap<Category, CreateCategoryDto>().ReverseMap();
+            CreateMap<Category, UpdateCategoryDto>().ReverseMap();
+
             CreateMap<Feature, CreateFeatureDto>().ReverseMap();
             CreateMap<Feature, GetByIdFeatureDto>().ReverseMap();
             CreateMap<Feature, ResultFeatureDto>().ReverseMap();
