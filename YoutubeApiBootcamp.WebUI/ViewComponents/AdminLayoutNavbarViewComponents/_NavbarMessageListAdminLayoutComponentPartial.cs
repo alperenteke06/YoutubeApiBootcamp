@@ -5,11 +5,11 @@ using YoutubeApiBootcamp.WebUI.Dtos.ContactMessageDtos;
 
 namespace YoutubeApiBootcamp.WebUI.ViewComponents.AdminLayoutNavbarViewComponents
 {
-	public class _NavbarMessageListAdminLayputComponentPartial:ViewComponent
+	public class _NavbarMessageListAdminLayoutComponentPartial:ViewComponent
 	{
 		private readonly IHttpClientFactory _httpClientFactory;
 
-		public _NavbarMessageListAdminLayputComponentPartial(IHttpClientFactory httpClientFactory)
+		public _NavbarMessageListAdminLayoutComponentPartial(IHttpClientFactory httpClientFactory)
 		{
 			_httpClientFactory = httpClientFactory;
 		}
