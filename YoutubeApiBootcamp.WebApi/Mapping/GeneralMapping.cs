@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using YoutubeApiBootcamp.WebApi.Dtos.FeatureDtos;
 using YoutubeApiBootcamp.WebApi.Dtos.MessageDtos;
+using YoutubeApiBootcamp.WebApi.Dtos.NotificationDtos;
 using YoutubeApiBootcamp.WebApi.Dtos.ProductDtos;
 using YoutubeApiBootcamp.WebApi.Entities;
 
@@ -22,6 +23,11 @@ namespace YoutubeApiBootcamp.WebApi.Mapping
 
             CreateMap<Product, CreateProductDto>().ReverseMap();
             CreateMap<Product, GetProductWithCategoryDto>().ForMember(x=>x.CategoryName, y=> y.MapFrom(z=>z.Category.CategoryName)).ReverseMap();
+
+            CreateMap<Notification, CreateNotificationDto>().ReverseMap();
+            CreateMap<Notification, UpdateNotificationDto>().ReverseMap();
+            CreateMap<Notification, GetNotificationByIdDto>().ReverseMap();
+            CreateMap<Notification, ResultNotificationDto>().ReverseMap();
         }
     }
 }
